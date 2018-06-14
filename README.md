@@ -17,3 +17,5 @@
     - 可以在keyBoard的letters变量里添加任意的键盘按键，注意是大写，配合频率即可发出声音，注意修改底部按键的css，flex设置换行即可，同时如果按键多，频率多的时候，频率对应的高度可以改为canvas的百分比
 - 彩蛋，算彩蛋吗？按空格键是下一个高音do，屏幕没显示该按键
 - 温馨提示，系统声音小一点比较好
+
+### 最后感谢参考学习的[慕课网HTML5音乐可视化](https://www.imooc.com/learn/299)和[W·Axes博客](https://www.cnblogs.com/axes/p/3842812.html)
