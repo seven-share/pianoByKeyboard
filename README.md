@@ -18,4 +18,4 @@
 - 彩蛋，算彩蛋吗？按空格键是下一个高音do，屏幕没显示该按键
 - 温馨提示，系统声音小一点比较好
 
-### 最后感谢参考学习的[慕课网HTML5音乐可视化](https://www.imooc.com/learn/299)和[W·Axes博客](https://www.cnblogs.com/axes/p/3842812.html)
+#### 最后感谢参考学习的[慕课网HTML5音乐可视化](https://www.imooc.com/learn/299)和[W·Axes博客](https://www.cnblogs.com/axes/p/3842812.html)
