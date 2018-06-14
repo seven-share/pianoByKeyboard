@@ -22,17 +22,19 @@ export default {
     },
     watch: {
         watchPress: function() {
-            this.drawCans()
+            this.draw.drawFresh(this.drawParam)
         }
     },
     components: {},
+    mounted:function(){
+        this.drawCans()
+    },
     methods: {
         drawCans: function() {
             let getCanvas = this.$refs.cas;
             // console.log(this.drawParam);
-            let draw = new drawClass(getCanvas, this.drawParam);
+            this.draw = new drawClass(getCanvas);
             // console.log(getCanvas);
-            draw.drawFresh();
         }
     }
 };

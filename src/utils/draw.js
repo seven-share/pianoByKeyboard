@@ -1,16 +1,24 @@
 class draw {
-    constructor(cansEle, drawParam) {
+    constructor(cansEle) {
         this.ctx = cansEle.getContext("2d");
-        this.drawParam = drawParam;
+        // this.drawParam = drawParam;
         this.height = [];
         this.smallHeight=[];
         this.timer;
         for (let i = 0; i < 43; i++) {
-            let height = Math.floor(this.drawParam - Math.random() * 100)
-            this.height.push(height)
-            this.smallHeight.push(height)
+            this.smallHeight.push(0)           
         }
     };
+
+    // 初始化高度
+    initHeight(drawParam){
+        this.height=[];
+        for (let i = 0; i < 43; i++) {
+            let height = Math.floor(drawParam - Math.random() * 100)
+            this.height.push(height)           
+        }
+    }
+    // 画单个音频条
     drawOne(left, height, smallHeight) {
         var grd = this.ctx.createLinearGradient(0, 0, 0, 350);
         grd.addColorStop(0, "red");
@@ -18,9 +26,10 @@ class draw {
         grd.addColorStop(1, "green");
         this.ctx.fillStyle = grd;
         this.ctx.fillRect(left, 400, 15, -height);
-        this.ctx.fillStyle = "#950000";
+        this.ctx.fillStyle = "green";
         this.ctx.fillRect(left, 400 - smallHeight - 40, 15, 10);
     };
+    // 画所有音频条
     drawAll() {
         this.ctx.clearRect(0, 0, 800, 400)
         for (let i = 0; i < 43; i++) {
@@ -28,18 +37,21 @@ class draw {
             this.drawOne(left, this.height[i], this.smallHeight[i])
         }
     };
+
+    改变音频条和顶部小方块的高度
     heightChange() {
         this.height.forEach((value, index) => {
-            this.height[index] = value - 4;
-            this.smallHeight[index] = this.smallHeight[index] - 3
+            this.height[index] = value - 8;
+            this.smallHeight[index] = this.smallHeight[index] - 5
             if (this.smallHeight[index] < this.height[index]) {
                 this.smallHeight[index] = this.height[index]
             }
-            if (this.smallHeight[index] < -40) {
+            if (this.smallHeight[index] < -50) {
                 this.smallHeight[index] = -50;
             }
         })
     };
+    判断小方块是否全部已经出canvas
     isAllHeightZero() {
         // smallHeight.forEach((value) => {
         //     if (value > -40) {
@@ -47,20 +59,24 @@ class draw {
         //     }
         // })
         for(let i=0;i<this.smallHeight.length;i++){
-            if(this.smallHeight[i]>-40){
+            if(this.smallHeight[i]!=-50){
                 return false
             }
         }
         return true
     }
-    drawFresh() {
+    // 刷新重画
+    drawFresh(drawParam) {
         cancelAnimationFrame(this.timer)
+        this.initHeight(drawParam)
+        console.log(this.height)
         let that = this;
         this.timer=requestAnimationFrame(function fn(){
-            console.log(that.isAllHeightZero())
+            that.heightChange();
+            // console.log(that.smallHeight)
             if(!that.isAllHeightZero()){
                 // console.log(smallHeight)
-                that.heightChange();
+                
                 that.drawAll();
                 that.timer=requestAnimationFrame(fn)
             }else{

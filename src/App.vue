@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="title">键盘钢琴师</div>
+    <div class="title">键盘·钢琴师</div>
     <router-view></router-view>
   </div>
 </template>
